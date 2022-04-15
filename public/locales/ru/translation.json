@@ -1,0 +1,14 @@
+{
+  "lng": "russian",
+  "form": {
+    "title": "вход",
+    "tab-phone": "по телефону",
+    "tab-ID": "по паспорту",
+    "input-up": "телефон",
+    "input-password": "пароль",
+    "button-login": "войти",
+    "button-demo": "демо-режим",
+    "button-forgot": "забыли пароль?",
+    "button-signup": "зарегистрироваться"
+  }
+}

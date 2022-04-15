@@ -1,13 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+import React, {Suspense} from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import "./index.css";
+
+import './i18n';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Suspense fallback={<div>Loading...</div>} >
+      <App />
+    </Suspense>
   </React.StrictMode>,
-  document.getElementById('root'),
+  document.getElementById("root")
 );
 
 // Hot Module Replacement (HMR) - Remove this snippet to remove HMR.
