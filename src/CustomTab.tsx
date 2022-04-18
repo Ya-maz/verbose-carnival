@@ -5,17 +5,13 @@ import Tab from "@mui/material/Tab";
 
 export const CSTab = styled(Tab)(({theme}) => ({
   textTransform: "capitalize",
-
   fontWeight: theme.typography.fontWeightRegular,
   fontSize: theme.typography.pxToRem(16),
   marginRight: theme.spacing(1),
   color: "#212529",
   "&.Mui-selected": {
     color: "#212529",
-  },
-  '&.Mui-focusVisible': {
-    backgroundColor: 'rgba(100, 95, 228, 0.32)',
-  },
+  }
 }));
 
 interface CSTabsProps {
