@@ -1,9 +1,10 @@
 import React from "react";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import {useTranslation} from "react-i18next";
+
+import {CSTab, CSTabs} from "./CustomTab";
+import {TabPanelPhone} from "./TabPanelPnone";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -23,14 +24,13 @@ function TabPanel(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box sx={{p: 3}}>
-          <Typography>{children}</Typography>
+        <Box sx={{py: 3}}>
+          { children}
         </Box>
       )}
     </div>
   );
 }
-
 
 export default function BasicTabs() {
   const [value, setValue] = React.useState(0);
@@ -42,25 +42,20 @@ export default function BasicTabs() {
 
   return (
     <Box sx={{width: "100%"}}>
-      <Box sx={{borderBottom: "none", borderColor: "darkolivegreen"}}>
-        <Tabs
+      <Box>
+        <CSTabs
           value={value}
           onChange={handleChange}
           aria-label="basic tabs"
           centered
+          variant="fullWidth"
         >
-          <Tab
-            sx={{textTransform: "capitalize", color: "#212529", px: 3}}
-            label={t("form.tab-phone")}
-          />
-          <Tab
-            sx={{textTransform: "capitalize", color: "#212529", px: 3}}
-            label={t("form.tab-ID")}
-          />
-        </Tabs>
+          <CSTab label={t("form.tab-phone")} />
+          <CSTab label={t("form.tab-ID")} />
+        </CSTabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Item One
+        <TabPanelPhone />
       </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two

@@ -13,6 +13,7 @@ export const LoginForm: FC<IProps> = () => {
     <>
       <h1>Hi</h1>
       <Box
+        p={1}
         sx={{
           width: 400,
           height: 450,
@@ -20,10 +21,18 @@ export const LoginForm: FC<IProps> = () => {
         }}
       >
         <Container fixed>
-          <Typography m={3} variant="h4" sx={{textTransform: "capitalize", fontWeight: "900", color: "#212529"}}>
-            {t("form.title")}
-          </Typography>
-          <BasicTabs />
+            <Typography
+              m={3}
+              variant="h4"
+              sx={{
+                textTransform: "capitalize",
+                fontWeight: "900",
+                color: "#212529",
+              }}
+            >
+              {t("form.title")}
+            </Typography>
+            <BasicTabs />
         </Container>
       </Box>
     </>
