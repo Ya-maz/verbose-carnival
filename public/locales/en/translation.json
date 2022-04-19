@@ -3,6 +3,7 @@
   "form": {
     "title": "log in",
     "tab-phone": "by phone",
+    "tab-phone-label": "phone number",
     "tab-ID": "by ID",
     "input-up": "ID no.",
     "input-password": "password",

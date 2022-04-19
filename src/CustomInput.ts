@@ -4,7 +4,7 @@ import InputBase from "@mui/material/InputBase";
 
 export const CSInput = styled(InputBase)(({theme}) => ({
   "label + &": {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(3),
   },
   "& .MuiInputBase-input": {
     borderRadius: 0,

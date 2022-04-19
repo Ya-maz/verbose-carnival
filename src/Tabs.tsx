@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import {useTranslation} from "react-i18next";
 
 import {CSTab, CSTabs} from "./CustomTab";
-import {TabPanelPhone} from "./TabPanelPnone";
+import {TabPanelContentPhone} from "./TabPanelContentPnone";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -24,7 +24,7 @@ function TabPanel(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box sx={{py: 3}}>
+        <Box sx={{py: 2}}>
           { children}
         </Box>
       )}
@@ -55,7 +55,7 @@ export default function BasicTabs() {
         </CSTabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <TabPanelPhone />
+        <TabPanelContentPhone />
       </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two

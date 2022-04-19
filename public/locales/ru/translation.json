@@ -3,6 +3,7 @@
   "form": {
     "title": "вход",
     "tab-phone": "по телефону",
+    "tab-phone-label": "телефон",
     "tab-ID": "по паспорту",
     "input-up": "телефон",
     "input-password": "пароль",
