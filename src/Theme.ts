@@ -20,7 +20,6 @@ export const theme: Theme = createTheme({
       black: "#212529",
       white: "#fff",
     }
-
   },
   components: {
     MuiButton: {
@@ -36,7 +35,6 @@ export const theme: Theme = createTheme({
         },
       ],
       styleOverrides: {
-      
         root: ({ ownerState, theme }) => ({
           borderRadius: 0,
           "&:disabled": {
