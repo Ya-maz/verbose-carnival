@@ -1,9 +1,13 @@
 import React from "react";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import {useTranslation} from "react-i18next";
+import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
+import Typography from "@mui/material/Typography";
+import { useTranslation } from "react-i18next";
+import {Theme} from "@mui/material/styles";
 
 import {CSTab, CSTabs} from "./CustomTab";
+import {CSButton} from "./CustomButton";
 import {TabPanelContentPhone} from "./TabPanelContentPnone";
 
 interface TabPanelProps {
@@ -23,11 +27,7 @@ function TabPanel(props: TabPanelProps) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{py: 2}}>
-          { children}
-        </Box>
-      )}
+      {value === index && <Box sx={{paddingTop: 2}}>{children}</Box>}
     </div>
   );
 }

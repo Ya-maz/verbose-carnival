@@ -8,37 +8,39 @@ import {useTranslation} from "react-i18next";
 
 import {CSButton} from "./CustomButton";
 import BasicTabs from "./Tabs";
+import {LoginFormGroupButton} from "./LoginFormGroupButton";
 
 interface IProps {}
 export const LoginForm: FC<IProps> = () => {
   const {t} = useTranslation();
   return (
-    <>
-      <h1>Hi</h1>
-      <Box
-        p={1}
-        sx={{
-          width: 350,
-          height: 450,
-          backgroundColor: "common.white",
-        }}
-      >
-        <Container fixed>
-          <Typography
-            m={3}
-            variant="h4"
-            sx={{
-              textTransform: "capitalize",
-              fontWeight: "900",
-              color: "#212529",
-            }}
-          >
-            {t("form.title")}
-          </Typography>
-          <BasicTabs />
-          <CSButton variant="contained">{t("form.button-login")}</CSButton>
-        </Container>
-      </Box>
-    </>
+    <Box
+      p={1}
+      sx={{
+        width: 350,
+        height: 450,
+        backgroundColor: "common.white",
+        paddingBottom: 3,
+      }}
+    >
+      <Container fixed>
+        <Typography
+          m={3}
+          variant="h4"
+          sx={{
+            textTransform: "capitalize",
+            fontWeight: "900",
+            color: "#212529",
+          }}
+        >
+          {t("form.title")}
+        </Typography>
+        <BasicTabs />
+        <LoginFormGroupButton />
+        <CSButton variant="contained" disableRipple color="secondary">
+          {t("form.button-signup")}
+        </CSButton>
+      </Container>
+    </Box>
   );
 };

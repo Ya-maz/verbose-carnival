@@ -12,7 +12,9 @@ function App({}: AppProps) {
     <div className="App">
       <header className="App-header">
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
+   
         <LanguageSwitch />
+        <h1>HI</h1>
       </header>
       <LoginForm />
     </div>

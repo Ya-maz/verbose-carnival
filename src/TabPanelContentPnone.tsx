@@ -3,6 +3,7 @@ import FormControl from "@mui/material/FormControl";
 
 import {CSInput} from "./CustomInput";
 import {CSLabel} from "./CustomLabel";
+import {CSButton} from "./CustomButton";
 import {useTranslation} from "react-i18next";
 
 export const TabPanelContentPhone = () => {
@@ -20,7 +21,11 @@ export const TabPanelContentPhone = () => {
           id="csinput-phone"
         />
       </FormControl>
-      <FormControl sx={{width: "100%", mt: "10px"}} hiddenLabel variant="standard">
+      <FormControl
+        sx={{width: "100%", mt: "10px"}}
+        hiddenLabel
+        variant="standard"
+      >
         <CSLabel shrink htmlFor="bootstrap-input" aria-label="password">
           {t("form.input-password")}
         </CSLabel>
@@ -31,6 +36,7 @@ export const TabPanelContentPhone = () => {
           id="csinput-password"
         />
       </FormControl>
+      <CSButton  disableRipple disabled variant="contained">{t("form.button-login")}</CSButton>
     </>
   );
 };
