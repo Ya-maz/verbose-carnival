@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import {
@@ -17,6 +17,7 @@ const REQUIRED_FIELD = "don't forget about this field";
 
 export const phoneValidation = {
   required: REQUIRED_FIELD,
+
   validate: (value: string) => {
     if (!value.match(/^([0-9\(\)\/\+ \-]*)$/)) {
       return "ohh";
@@ -30,18 +31,47 @@ interface ILogInForm {
   password: string;
 }
 
+
+
+
+
+
 export const TabPanelContentPhone = () => {
   const {t} = useTranslation();
 
-  const {handleSubmit, control, reset} = useForm<ILogInForm>({
-    mode: "onChange",
-  });
+  const ref = useRef<HTMLInputElement | null>(null);
+  const [isCapsLockActive, setIsCapsLockActive] = useState<boolean>(false);
+
+  const {handleSubmit, control, reset, formState, setError, clearErrors} =
+    useForm<ILogInForm>({
+      mode: "onChange",
+    });
   const {errors} = useFormState({control});
+
 
   const onSubmit: SubmitHandler<ILogInForm> = (data) => {
     console.log(data);
     reset();
   };
+
+  useEffect(() => {
+    const capslockdetect = (e: KeyboardEvent) => {
+      if (e.getModifierState("CapsLock")) {
+        setIsCapsLockActive(true);
+      } else setIsCapsLockActive(false);
+    };
+    ref.current?.addEventListener("keyup", capslockdetect);
+    return ()=>ref.current?.removeEventListener("keyup", capslockdetect);
+  }, []);
+
+  useLayoutEffect(() => {
+    if (isCapsLockActive) {
+      setError("phone", {type: "manual", message: "Caps Lock  is on"});
+    }
+    if (errors.phone?.type === "manual" && !isCapsLockActive) {
+      clearErrors("phone");
+    }
+  }, [isCapsLockActive, setIsCapsLockActive]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -53,27 +83,24 @@ export const TabPanelContentPhone = () => {
           control={control}
           name="phone"
           rules={phoneValidation}
-          render={({field}) => (
+          render={({field: {onChange, value}}) => (
             <>
               <CSInput
+                ref={ref}
                 fullWidth
                 aria-label="phone"
                 placeholder={t("form.tab-phone-label")}
                 id="csinput-phone"
-                onChange={(e) => field.onChange(e)}
-                value={field.value}
+                onChange={onChange}
+                value={value}
                 error={!!errors.phone?.message}
               />
               <FormHelperText error>{errors.phone?.message}</FormHelperText>
             </>
           )}
         />
-      </FormControl>  
-
-      <FormControl
-        sx={{width: "100%"}}
-        variant="standard"
-      >
+      </FormControl>
+      <FormControl sx={{width: "100%"}} variant="standard">
         <CSLabel shrink htmlFor="bootstrap-input" aria-label="password">
           {t("form.input-password")}
         </CSLabel>
@@ -93,7 +120,12 @@ export const TabPanelContentPhone = () => {
           )}
         />
       </FormControl>
-      <CSButton disableRipple type="submit" disabled variant="contained">
+      <CSButton
+        disableRipple
+        type="submit"
+        disabled={formState.isValid}
+        variant="contained"
+      >
         {t("form.button-login")}
       </CSButton>
     </form>
