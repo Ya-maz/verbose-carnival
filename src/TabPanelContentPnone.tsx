@@ -12,6 +12,7 @@ import {CSInput} from "./CustomInput";
 import {CSLabel} from "./CustomLabel";
 import {CSButton} from "./CustomButton";
 import {useTranslation} from "react-i18next";
+import { useCapsLockDetector } from "./hooks/useCapsLockDetector";
 
 const REQUIRED_FIELD = "don't forget about this field";
 
@@ -39,8 +40,7 @@ interface ILogInForm {
 export const TabPanelContentPhone = () => {
   const {t} = useTranslation();
 
-  const ref = useRef<HTMLInputElement | null>(null);
-  const [isCapsLockActive, setIsCapsLockActive] = useState<boolean>(false);
+  const { ref, isCapsLockActive, setIsCapsLockActive} = useCapsLockDetector();
 
   const {handleSubmit, control, reset, formState, setError, clearErrors} =
     useForm<ILogInForm>({
@@ -48,21 +48,10 @@ export const TabPanelContentPhone = () => {
     });
   const {errors} = useFormState({control});
 
-
   const onSubmit: SubmitHandler<ILogInForm> = (data) => {
     console.log(data);
     reset();
   };
-
-  useEffect(() => {
-    const capslockdetect = (e: KeyboardEvent) => {
-      if (e.getModifierState("CapsLock")) {
-        setIsCapsLockActive(true);
-      } else setIsCapsLockActive(false);
-    };
-    ref.current?.addEventListener("keyup", capslockdetect);
-    return ()=>ref.current?.removeEventListener("keyup", capslockdetect);
-  }, []);
 
   useLayoutEffect(() => {
     if (isCapsLockActive) {
